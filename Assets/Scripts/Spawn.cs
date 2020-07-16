@@ -12,10 +12,12 @@ public class Spawn : MonoBehaviour
     public float bar_spawnp;
     public float wall_spawnp;
     public float brick_spawnp;
+    public int ball_count=0;
     // Start is called before the first frame update
     void ball_spawn()
     {
         ball = Instantiate<GameObject>(Resources.Load<GameObject>("ball"), new Vector3(0, -3.25f, 0), Quaternion.identity);
+        ball_count++;
     }
     void bar_spawn()
     {
@@ -39,12 +41,28 @@ public class Spawn : MonoBehaviour
             }
         }
     }
+    public void destroy_evr()
+    {
+        Destroy(bar);
+        Destroy(ball);
+        while(wall.Count!=0)
+        {
+            Destroy(wall[0]);
+            wall.RemoveAt(0);
+        }
+        while(brick.Count!=0)
+        {
+            Destroy(brick[0]);
+            brick.RemoveAt(0);
+        }
+
+    }
     void Start()
     {
         ball_spawn();
         bar_spawn();
         wall_spawn();
-        //brick_spawn();
+        brick_spawn();
     }
 
     // Update is called once per frame

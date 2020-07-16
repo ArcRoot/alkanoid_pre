@@ -25,6 +25,10 @@ public class crash : MonoBehaviour
                 GameObject.FindGameObjectWithTag("ball").GetComponent<ball_move>().vertical_rev();
             }
         }
+        if(collision.gameObject.CompareTag("gameover"))
+        {
+
+        }
     }
     void Start()
     {
